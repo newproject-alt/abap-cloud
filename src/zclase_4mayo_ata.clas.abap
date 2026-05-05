@@ -48,6 +48,32 @@ DATA lv_resultado   TYPE i.
 "el proximo dia una sentencia de numero aleatorio
 
 
+"hoy 5 de mayo"
+
+data(lv_cliente) = cl_abap_random_int=>create( seed = cl_abap_random=>seed(  )
+                                                    min = 1
+                                                    max = 6 )->get_next(  ).
+    "Lin 18-20 es para generar un numero generado random llamando a una clase estandar de sap"
+*    data(lv_cliente) - "Para indicar variables en línea, puede ser sin indicarle valor"
+
+        case lv_cliente.
+
+        when 1.
+            out->write( lv_cliente ).
+            out->write( 'Compañía del cliente 1' ).
+        when 2.
+            out->write( lv_cliente ).
+            out->write( 'Compañía del cliente 2' ).
+        when 3.
+            out->write( lv_cliente ).
+            out->write( 'Compañía del cliente 3' ).
+        when others.
+            out->write( lv_cliente ).
+            out->write( 'Compañía del cliente superior al 3' ).
+
+        endcase.
+
+
   ENDMETHOD.
 
 ENDCLASS.
