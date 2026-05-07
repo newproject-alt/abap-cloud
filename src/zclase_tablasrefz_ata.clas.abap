@@ -17,9 +17,17 @@ CLASS zclase_tablasrefz_ata IMPLEMENTATION.
 
 "Siempre al inicio de la clase, los tipos y variables, eh, e indicando que es cada cosa
 
+*    DATA lv_nombre  type zde_nombre_ata.        "clase de 7-5-26
+*    DATA lv_edad    type zde_edad_ata.          "variable con tipo personalizado
+
+    data lv_edad type /dmo/airport.         "pasa de variable a estructura/tabla ya que le asignas el tipo creado con sus campos creados
+
+*    lv_edad = 2.
+*    out->write( lv_edad ).
+
     types : begin of ty_persona,
-            nombre   type string,
-            edad     type i,
+            nombre   type string,    "zde_nombre_ata,
+            edad     type i,         "zde_edad_ata,
             telefono type string,
             email    type string,
     end of ty_persona.
