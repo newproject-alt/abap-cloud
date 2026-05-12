@@ -1,25 +1,13 @@
-CLASS zclase_ata2 DEFINITION
-  PUBLIC
-  FINAL
-  CREATE PUBLIC .
+class ZCLASE_ATA2 definition
+  public
+  create private .
 
-  PUBLIC SECTION.
-    INTERFACES if_oo_adt_classrun .
-
-  PROTECTED SECTION.
-  PRIVATE SECTION.
+public section.
+protected section.
+private section.
 ENDCLASS.
 
 
 
-CLASS zclase_ata2 IMPLEMENTATION.
-  METHOD if_oo_adt_classrun~main.
-
-
-
-
-
-
-  ENDMETHOD.
-
+CLASS ZCLASE_ATA2 IMPLEMENTATION.
 ENDCLASS.
