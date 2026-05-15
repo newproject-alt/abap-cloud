@@ -199,13 +199,13 @@ CLASS zcl_tabla_ata IMPLEMENTATION.
     data lt_empleadoaero type ty_empleadoaero.      "Creamos tabla nueva donde volcar
                                                     "vete tú a saber que info
 
-    out->write( lt_aeropuerto ).
+*    out->write( lt_aeropuerto ).
 
 *    loop at lt_aeropuerto into ls_aeropuerto.
 *
 *        if ls_aeropuerto-name(1) = 'M'.
 *
-*
+
 *            ls_empleadoaero-id = ls_empleadoaero-id + 1.
 *
 *
@@ -217,10 +217,72 @@ CLASS zcl_tabla_ata IMPLEMENTATION.
 
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "Cómo heredar la estructura y tipos de lt_empleado asignándolos a la nueva"
+*    data lt_Empleado2 like lt_empleado.
+
+    "Forma moderna de insertar valores en una tabla, directamente
+    insert value #(
+                    nombre = 'Dani'
+                    edad = 5
+                    telefono = '4000394'
+                    correo = 'idjicd@gmai.com' ) into table lt_empleado.
+
+     insert value #(
+                    nombre = 'Laura'
+                    edad = 25
+                    telefono = '4120394'
+                    correo = 'tres@gmai.com' ) into table lt_empleado.
+
+    "Insertar una línea en blanco en una tabla
+    insert INITIAL LINE INTO table lt_empleado.
+
+    LOOP AT lt_empleado into ls_empleado.
+
+        if ls_empleado-edad = 5.
+        out->write( |Nombre: { ls_empleado-nombre }, edad: { ls_empleado-edad }.| ).
+
+        endif.
+
+    endloop.
+
+    "Copiar toda la información de una tabla a otra"
+
+    data lt_empleado2 type table of ty_empleado.
+*    insert lines of lt_empleado INTO table lt_empleado2.
+
+    "Selecciona las líneas a copiar desde la primera a lo indicado en una tabla"
+*    insert lines of lt_empleado to 1 INTO table lt_empleado2.
+
+    "Selecciona las líneas a copiar desde X a Y en una tabla"
+    insert lines of lt_empleado from 2 to 4 into table lt_empleado2.
 
 
 
+    "Instancia/comando Append, sirve como el insert pero con diferencias"
+    "Por ejemplo, no puedes indicarle (como con index) la posición"
+    "Y otros fallos también"
+*    append ls_empleado to lt_empleado.
 
+    "Forma lineal
+*    append value #( nombre = 'Pablo' edad = 5 telefono = '4353' correo = 'dicsdjcn@fifdn.co' ) to lt_Empleado.
+
+    "De golpe meter datos
+    data lt_empleado3 type table of ty_empleado. "Tabla nueva
+
+    lt_Empleado3 = value #(
+
+    ( nombre = 'Ana'    edad = 2 telefono = '3294050943' correo = 'jdndner' )
+    ( nombre = 'Mary'   edad = 2 telefono = '3294050943' correo = 'jdndner' )
+    ( nombre = 'Esther' edad = 2 telefono = '3294050943' correo = 'jdndner' )
+     ).
+
+
+out->write( lt_empleado ).
+out->write( | | ).              "Esto es para crear una línea en blanco"
+out->write( lt_empleado2 ).
+out->write( | | ).
+out->write( lt_empleado3 ).
 
 
 
