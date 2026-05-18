@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_ata2 IMPLEMENTATION.
+CLASS ZCLASE_ATA2 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 
@@ -21,5 +23,4 @@ CLASS zclase_ata2 IMPLEMENTATION.
 
 
   ENDMETHOD.
-
 ENDCLASS.

@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_5mayo_ata IMPLEMENTATION.
+CLASS ZCLASE_5MAYO_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     "Bucle do"
@@ -107,5 +109,4 @@ endwhile.
 
 
   ENDMETHOD.
-
 ENDCLASS.

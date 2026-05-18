@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_estructura_ata IMPLEMENTATION.
+CLASS ZCLASE_ESTRUCTURA_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     "clase de Estructuras"

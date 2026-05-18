@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_tablasrefz_ata IMPLEMENTATION.
+CLASS ZCLASE_TABLASREFZ_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 "Siempre al inicio de la clase, los tipos y variables, eh, e indicando que es cada cosa

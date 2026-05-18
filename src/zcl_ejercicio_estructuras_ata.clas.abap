@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_ejercicio_estructuras_ata IMPLEMENTATION.
+CLASS ZCL_EJERCICIO_ESTRUCTURAS_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     """""""""""""Ejercicio de práctica; estructuras""""""""""""""""""""""""""
@@ -77,5 +79,4 @@ out->write( ls_ejemplo ).
 
 
   ENDMETHOD.
-
 ENDCLASS.

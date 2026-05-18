@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_funcionprocesamiento_ata IMPLEMENTATION.
+CLASS ZCL_FUNCIONPROCESAMIENTO_ATA IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

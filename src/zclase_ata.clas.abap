@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_ata IMPLEMENTATION.
+CLASS ZCLASE_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 *    data lv_edad2 type i.
@@ -128,5 +130,4 @@ CLASS zclase_ata IMPLEMENTATION.
 
 
   ENDMETHOD.
-
 ENDCLASS.

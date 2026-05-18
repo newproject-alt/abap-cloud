@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_ata2704 IMPLEMENTATION.
+CLASS ZCLASE_ATA2704 IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 *    types:BEGIN OF ty_cliente,
@@ -105,5 +107,4 @@ CLASS zclase_ata2704 IMPLEMENTATION.
 
 
   ENDMETHOD.
-
 ENDCLASS.

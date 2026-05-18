@@ -32,7 +32,8 @@ ENDCLASS.
 
 
 
-CLASS zclase_poo_ata IMPLEMENTATION.
+CLASS ZCLASE_POO_ATA IMPLEMENTATION.
+
 
   METHOD ladrar.
 
@@ -40,10 +41,10 @@ CLASS zclase_poo_ata IMPLEMENTATION.
 
   ENDMETHOD.
 
+
   METHOD lanzar_pelota.
 
         rv_Accion = |{ nombre } corre a por la pelota |.
 
   ENDMETHOD.
-
 ENDCLASS.

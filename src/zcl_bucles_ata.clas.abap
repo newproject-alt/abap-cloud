@@ -12,7 +12,7 @@ ENDCLASS.
 
 
 
-CLASS zcl_bucles_ata IMPLEMENTATION.
+CLASS ZCL_BUCLES_ATA IMPLEMENTATION.
 
 
   METHOD if_oo_adt_classrun~main.

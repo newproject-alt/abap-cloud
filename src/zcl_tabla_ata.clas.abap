@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_tabla_ata IMPLEMENTATION.
+CLASS ZCL_TABLA_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     """""""Tablas: introducción""""""""""""""""
@@ -257,6 +259,8 @@ CLASS zcl_tabla_ata IMPLEMENTATION.
     "Selecciona las líneas a copiar desde X a Y en una tabla"
     insert lines of lt_empleado from 2 to 4 into table lt_empleado2.
 
+*    También tienes esta forma
+*    append lines of lt_empleado from 2 to lt_empleado2.
 
 
     "Instancia/comando Append, sirve como el insert pero con diferencias"
@@ -277,6 +281,69 @@ CLASS zcl_tabla_ata IMPLEMENTATION.
     ( nombre = 'Esther' edad = 2 telefono = '3294050943' correo = 'jdndner' )
      ).
 
+    "Directamente crear una tabla y declarar el tipo
+    "Tenemos un tipo ya creado ty_empleado y ahora una estructura vacía
+
+
+         data ls_prueba type          ty_empleado.
+         data lt_prueba type table of ty_empleado.                  "Por si, otra tabla
+
+    types ty_tabla type table of ty_empleado with empty key.        "como darle otra etiqueta al tipo,
+                                                                    "with empty key = ese tipo no necesita campo clave
+                                                                    "los campos clave pueden ser únicos o no únicos en las tablas sort
+
+*    data lt_prueba type ty_tabla                                   "cambia el tipo de esta tabla
+
+*    data(lt_empleado4) value ty_tabla(
+*    ( nombre = 'Paco'  edad = 20 telefono = '+34600601602' correo = 'jdndner@gmail.com' )
+*    ( nombre = 'Paca'  edad = 28 telefono = '+34294050943' correo = 'pp@goutmail.com'   )
+*    ( nombre = 'Pecas' edad = 90 telefono = '+33676766667' correo = 'pqs@outlook.es'    )
+*    ( nombre = 'Peque' edad = 33 telefono = '+34900600693' correo = 'jdndner@gmail.de'  )
+*     ).
+*
+*    data(lt_empleado4) value ty_tabla(
+*
+*    ( nombre = 'Paco'  edad = 20 telefono = '+34600601602' correo = 'jdndner@gmail.com' )
+*    ( nombre = 'Paca'  edad = 28 telefono = '+34294050943' correo = 'pp@goutmail.com'   )
+*    ( nombre = 'Pecas' edad = 90 telefono = '+33676766667' correo = 'pqs@outlook.es'    )
+*    ( nombre = 'Peque' edad = 33 telefono = '+34900600693' correo = 'jdndner@gmail.de'  )
+*     ).
+
+""""""Standard table"""""""
+"Es la que se crea por defecto si no se especifica el tipo al crearla. El tipo de acceso que se usa en las tablas internas es lineal,
+"es decir, irá registro a registro hasta encontrar el deseado.
+"Ocupa poca memoria y se le pueden añadir registros muy rápidamente pero es poco eficiente si necesitamos buscar registros con frecuencia
+"sobre todo si la base de datos tiene muchas entradas.
+
+"Cuándo usarla - Cuando las tablas son pequeñas/pocas entradas
+"                Cuando las entradas pueden procesarse en el orden exacto al de su inserción
+"Las que vamos a usar por ahora
+
+""""""Sorted table"""""""
+"Las filas de este tipo de tabla tienen asignado un índice interno y aparecerán ordenadas respecto a su clave que puede ser única o no única.
+"El acceso se realiza con la clave
+
+"Cuándo usarla - Cuando se espera un gran número de accesos afines
+
+""""""Hashed table"""""""
+"Se accede con un algoritmo numérico llamado "hash function" el cual determina la posición de un registro partiendo de una determinada clave
+"(la clave tiene que ser única), la más rápida de todas las tablas
+
+"Cuándo usar - Si la acción más frecuente es acceder a una línea, por la clave, eso será así cuando por ejemplo queramos crear una tabla interna que
+"              se parezca a una tabla de datos.
+"              Adecuada también cuando queremos procesar grandes cantidades de datos, no merece la pena con tablas pequeñas
+
+""""""Clave"""""""
+"Identifica cada entrada de una tabla. Hay dos tipos:
+"                                                    - Estándar
+"                                                    - Clave definida por usuario
+
+"El programador puede decidir si la clave es única (UNIQUE) o no única (NON-UNIQUE)
+"Importante - la clave de las tablas estándar NO puede ser única
+"             la clave de las tablas hashed SIEMPRE es única
+
+"Ojo - El append no se puede usar en las tablas sort y hashed, crack
+
 
 out->write( lt_empleado ).
 out->write( | | ).              "Esto es para crear una línea en blanco"
@@ -287,5 +354,4 @@ out->write( lt_empleado3 ).
 
 
   ENDMETHOD.
-
 ENDCLASS.

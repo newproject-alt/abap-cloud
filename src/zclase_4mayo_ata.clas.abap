@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_4mayo_ata IMPLEMENTATION.
+CLASS ZCLASE_4MAYO_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     "Sentencia case, igual casi al if pero hacer una pregunta o dstintas a la = variable"
@@ -75,5 +77,4 @@ data(lv_cliente) = cl_abap_random_int=>create( seed = cl_abap_random=>seed(  )
 
 
   ENDMETHOD.
-
 ENDCLASS.

@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_objeto_ata IMPLEMENTATION.
+CLASS ZCLASE_OBJETO_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
     data(lo_perro) = new ZCLASE_POO_ATA(  ).
@@ -36,5 +38,4 @@ CLASS zclase_objeto_ata IMPLEMENTATION.
     endif.
 
   ENDMETHOD.
-
 ENDCLASS.

@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_if_ata IMPLEMENTATION.
+CLASS ZCL_IF_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 * Declarar/crear una variable, con su tipo y valor
@@ -120,5 +122,4 @@ DATA lv_edad type i value 10.
         out->write( 'Final' ).
 
   ENDMETHOD.
-
 ENDCLASS.

@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_ej3004_ata IMPLEMENTATION.
+CLASS ZCL_EJ3004_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
 * Ejercicio de If por Dani
@@ -158,5 +160,4 @@ CLASS zcl_ej3004_ata IMPLEMENTATION.
 
 
   ENDMETHOD.
-
 ENDCLASS.

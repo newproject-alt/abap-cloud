@@ -11,7 +11,9 @@ ENDCLASS.
 
 
 
-CLASS zclase_ata2704tablas IMPLEMENTATION.
+CLASS ZCLASE_ATA2704TABLAS IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
   types:BEGIN OF ty_cliente,
@@ -98,5 +100,4 @@ lt_aeropuerto = value #(
 
 
   ENDMETHOD.
-
 ENDCLASS.

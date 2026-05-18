@@ -12,7 +12,9 @@ ENDCLASS.
 
 
 
-CLASS zcl_primeraclase_ata IMPLEMENTATION.
+CLASS ZCL_PRIMERACLASE_ATA IMPLEMENTATION.
+
+
   METHOD if_oo_adt_classrun~main.
 
   "Declarar una variable"
