@@ -134,11 +134,11 @@ CLASS zcl_tablas2_ata IMPLEMENTATION.
     """"""""""""Apartado 3
     "Extraer con la tabla sorted todos los registros donde country sea igual a IT
 
-    data lt_ejercicio_sorted type sorted table of /dmo/airport with unique key airport_id.        "Se crea la tabla sorted
+    data lt_ejercicio_sorted type sorted table of /dmo/airport with unique key country.        "Se crea la tabla sorted
 
     select from /dmo/airport            "Realizamos una selección para volcarla en la nueva tabla
     fields *
-    where country = 'IT'
+    "where country = 'IT'
     into table @lt_ejercicio_sorted.
 
     out->write( | | ).
@@ -149,7 +149,7 @@ CLASS zcl_tablas2_ata IMPLEMENTATION.
 *    read table lt_ejercicio_sort into data(ls_ejercicio2) with table key country = 'IT'.
 *        out->write( ls_flight ).
 
-    data(ls_ejercicio2) = lt_ejercicio_sorted[ country = 'IT' ].
+*    data(ls_ejercicio2) = lt_ejercicio_sorted[ key primary_key airport_id = 'IT' ].
 
 *    DATA(ls_fin) = FILTER #( lt_ejercicio_sort WHERE country = 'IT' ).
 
