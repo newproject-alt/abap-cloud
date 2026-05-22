@@ -21,44 +21,44 @@ CLASS ZCLASE_ESTRUCTURA_ATA IMPLEMENTATION.
 
 *    DATA lv_var type i value 5.
 
-    types : begin of ty_persona,
-            nombre   type string,
-            edad     type i,
-            telefono type string,
-            email    type string,
-    end of ty_persona.
+*    types : begin of ty_persona,
+*            nombre   type string,
+*            edad     type i,
+*            telefono type string,
+*            email    type string,
+*    end of ty_persona.
 
-data ls_persona     type ty_persona.                     "nombres identificativos"
-data ls_cliente     type ty_persona.                     "usar el type personalizado en tablas que tengan sent"
-data ls_empleado    type ty_persona.                     "creacion de estructura con tipo pero sin valor"
-
+*data ls_persona     type ty_persona.                     "nombres identificativos"
+*data ls_cliente     type ty_persona.                     "usar el type personalizado en tablas que tengan sent"
+*data ls_empleado    type ty_persona.                     "creacion de estructura con tipo pero sin valor"
+*
+**out->write( ls_persona ).
+*
+*    ls_cliente-nombre   = 'Daniel'.
+*    ls_cliente-edad     = 33.
+*    ls_cliente-telefono = '600610601'.
+*    ls_cliente-email    = 'alo@gmail.com'.
+*
+*    ls_empleado-nombre  = 'Juan'.
+*    ls_empleado-edad    = 25.
+**    ls_empleado-telefono   = ''.
+*
 *out->write( ls_persona ).
-
-    ls_cliente-nombre   = 'Daniel'.
-    ls_cliente-edad     = 33.
-    ls_cliente-telefono = '600610601'.
-    ls_cliente-email    = 'alo@gmail.com'.
-
-    ls_empleado-nombre  = 'Juan'.
-    ls_empleado-edad    = 25.
-*    ls_empleado-telefono   = ''.
-
-out->write( ls_persona ).
-out->write( ls_cliente ).
-out->write( ls_empleado ).
-
-
-    data(ls_persona2) = value ty_persona(      "forma dif de rellenar una estructura nueva"
-    nombre      = 'Daniel'                     "esta se crea de golpe y en la misma linea con value type
-    edad        = 32                           "ty_persona creado anteriormente, se asigna tipo y valores
-    telefono    = '600610601'
-    email       = 'alo@gmail.com' ).
-
-    ls_persona  = value #(                     "forma de rellenar una estructura que ya existe"
-    nombre      = 'Fernan'                     "esta se ha declarado ya y rellenado su tipo, por lo que no
-    edad        = 32                           "hace falta el data ni type, y si el #
-    telefono    = '611612622'
-    email       = 'alo@gmail.com' ).
+*out->write( ls_cliente ).
+*out->write( ls_empleado ).
+*
+*
+*    data(ls_persona2) = value ty_persona(      "forma dif de rellenar una estructura nueva"
+*    nombre      = 'Daniel'                     "esta se crea de golpe y en la misma linea con value type
+*    edad        = 32                           "ty_persona creado anteriormente, se asigna tipo y valores
+*    telefono    = '600610601'
+*    email       = 'alo@gmail.com' ).
+*
+*    ls_persona  = value #(                     "forma de rellenar una estructura que ya existe"
+*    nombre      = 'Fernan'                     "esta se ha declarado ya y rellenado su tipo, por lo que no
+*    edad        = 32                           "hace falta el data ni type, y si el #
+*    telefono    = '611612622'
+*    email       = 'alo@gmail.com' ).
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -69,11 +69,43 @@ out->write( ls_empleado ).
     "la t.transparente persiste a no ser que las borres
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 
 
+"Tablas último repaso"
 
 
+types:BEGIN Of ty_persona,
+
+      nombre type ZDE_NOMBRE_DER,
+      edad  type  i,
+      correo type string,
+      telefono type string,
+ END of TY_PERSONA.
+
+
+DATA ls_persona type ty_persona.
+data lt_persona type  table of ty_persona.
+
+
+ls_persona = value #( correo = 'danie@experis.es' edad = 33 nombre = 'daniel' telefono = '+3466666' ).
+
+INSERT ls_persona INTO lt_persona INDEX 1.
+
+ls_persona = value #( correo = 'maxi@experis.es' edad = 33 nombre = 'maxi' telefono = '+3466666' ).
+
+INSERT ls_persona INTO lt_persona INDEX 2.
+
+ls_persona-correo = 'angeles@experis.es'.
+ls_persona-nombre = 'anegeles'.
+
+INSERT ls_persona INTO lt_persona INDEX 3.
+
+
+out->write( ls_persona ).
+out->write( | | ).
+out->write( lt_persona ).
 
 
 

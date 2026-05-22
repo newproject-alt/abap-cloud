@@ -128,5 +128,36 @@ CLASS ZCL_BUCLE_CASE_ATA IMPLEMENTATION.
          endif.
                 out->write( 'Fin de programa, gracias por comprar' ).
 
+
+
+"Otro ejemplo, del profesor daniel, del dia 20-5 creo"
+
+*DATA(lv_edad) = cl_abap_random_int=>create( seed = cl_abap_random=>seed( )
+*                                             min  = 1
+*                                             max  = 100 )->get_next( ).
+*
+*DATA lv_precio TYPE i.
+*DATA lv_descripcion TYPE string.
+*
+*" Determinar precio según edad
+*IF lv_edad < 12.
+*    lv_precio      = 5.
+*    lv_descripcion = 'Menor de 12 años'.
+*ELSEIF lv_edad >= 13 and lv_edad <= 18 .
+*    lv_precio      = 10.
+*    lv_descripcion = 'Adolescente (13-18 años)'.
+*ELSEIF lv_edad > 18 AND lv_edad <= 65.
+*    lv_precio      = 20.
+*    lv_descripcion = 'Adulto (18-65 años)'.
+*ELSE.
+*    lv_precio      = 10.
+*    lv_descripcion = 'Mayor de 65 años'.
+*ENDIF.
+*
+*out->write( |Edad: { lv_edad } años| ).
+*out->write( |Categoría: { lv_descripcion }| ).
+*out->write( |Precio: { lv_precio } €| ).
+*out->write( 'fin de programa' ).
+
   ENDMETHOD.
 ENDCLASS.
