@@ -73,14 +73,17 @@ CLASS ZCL_EJE_TABLAS_ATA IMPLEMENTATION.
 
                                                  max = lv_nregistros )->get_next(  ).
 
+
+
    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
    "Revisión apartado 5 del ejercicio"
 
-   "Otros compañeros han creado dos variables para este apartado, que es detectar número máximo de registros y asignarlo a la función random para usarla dos veces"
+   "Otros compañeros han creado dos variables para este apartado, que es detectar número máximo de
+   "registros y asignarlo a la función random para usarla dos veces"
    "Extraer dos números, mínimo y máximo, de las líneas a extraer de tabla 2"
    "luego pegarlas en la primera fila de la tabla 1"
 
-
+"vale me piro ya demasiada brasa me da el puto estomago coñio"
 
    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 

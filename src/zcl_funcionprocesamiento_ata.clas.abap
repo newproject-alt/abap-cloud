@@ -96,7 +96,8 @@ CLASS ZCL_FUNCIONPROCESAMIENTO_ATA IMPLEMENTATION.
 *        out->write( lv_count ).
 *
 *         data(lv_correo) = match( val = lv_text pcre = lv_pattern2 occ = 1 ).          "occ es primer correo que te encuentres
-                                                                                        "para poder pillar todos seria o un bucle con difrs variables o una tabla o......
+                                                                                        "para poder pillar todos seria o un bucle con difrs variables o
+                                                                                        "una tabla o......
 *         out->write( lv_correo ).
 
 
