@@ -233,5 +233,16 @@ CLASS zcl_tablas2_ata IMPLEMENTATION.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
   ENDMETHOD.
 ENDCLASS.
