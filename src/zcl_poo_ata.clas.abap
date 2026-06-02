@@ -17,7 +17,7 @@ CLASS zcl_poo_ata DEFINITION
 
         methods: carga_datos    returning value(rv_Accion) type string.
         methods: id_exponencial returning value(rv_Accion) type string.
-        methods: random         returning value(rv_Accion) type string.
+        methods: random         returning value(rv_Accion) type i. "string.
 
 
   PROTECTED SECTION.
