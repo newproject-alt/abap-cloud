@@ -6,7 +6,7 @@
     <DOMNAME>ZDO_NOMBREPRUEBA_ATA</DOMNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
     <DATATYPE>STRG</DATATYPE>
-    <LENG>000256</LENG>
+    <LENG>000280</LENG>
     <DDTEXT>Dominio con nombre bien zdo_xxx_ata, para clase de 7 mayo</DDTEXT>
     <DOMMASTER>E</DOMMASTER>
    </DD01V>
