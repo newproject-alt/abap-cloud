@@ -24,12 +24,6 @@ CLASS lcl_flight DEFINITION ABSTRACT.
         i_connection_id TYPE /dmo/connection_id
         i_flight_date   TYPE /dmo/flight_date.
 
-*    METHODS constructor
-*      IMPORTING
-*        i_carrier_id    TYPE /dmo/carrier_id
-*        i_connection_id TYPE /dmo/connection_id
-*        i_flight_date   TYPE /dmo/flight_date.
-
     TYPES tab TYPE STANDARD TABLE OF REF TO lcl_flight WITH DEFAULT KEY.
 
     TYPES: BEGIN OF st_connection_details,
@@ -113,9 +107,6 @@ CLASS lcl_passenger_flight DEFINITION
         RETURNING
           VALUE(r_result) TYPE i.
 
-*    METHODS
-*      get_description RETURNING VALUE(r_result) TYPE string_table.
-
     CLASS-METHODS class_constructor.
     CLASS-METHODS
       get_flights_by_carrier
@@ -150,10 +141,6 @@ CLASS lcl_passenger_flight DEFINITION
              currency_code  TYPE /lrn/passflight-currency_code,
            END OF st_flights_buffer.
 
-*    CLASS-DATA: flights_buffer
-*          TYPE SORTED TABLE OF st_flights_buffer
-*          WITH NON-UNIQUE KEY carrier_id connection_id flight_date.
-
     CLASS-DATA: flights_buffer
           TYPE HASHED TABLE OF st_flights_buffer
           WITH UNIQUE KEY carrier_id connection_id flight_date
@@ -174,7 +161,6 @@ CLASS lcl_passenger_flight DEFINITION
         duration        TYPE i,
       END OF st_connections_buffer.
 
-*    CLASS-DATA connections_buffer TYPE TABLE OF st_connections_buffer.
     CLASS-DATA connections_buffer
           TYPE HASHED TABLE OF st_connections_buffer
           WITH UNIQUE KEY carrier_id connection_id.
@@ -236,8 +222,6 @@ CLASS lcl_passenger_flight IMPLEMENTATION.
       WHERE carrier_id = @i_carrier_id
       APPENDING TABLE @flights_buffer.
 
-*      SORT flights_buffer BY carrier_id connection_id flight_date.
-
     ENDIF.
 
     r_result = VALUE #(
@@ -282,7 +266,6 @@ CLASS lcl_passenger_flight IMPLEMENTATION.
 *                 ,
 *                 on_error           = @sql_currency_conversion=>c_on_error-set_to_null
                                   ) AS price,
-*               currency_code
                @currency AS currency_code
          WHERE carrier_id    = @i_carrier_id
            AND connection_id = @i_connection_id
@@ -291,49 +274,18 @@ CLASS lcl_passenger_flight IMPLEMENTATION.
     ENDTRY.
 
     IF sy-subrc = 0.
-*      me->carrier_id    = i_carrier_id.
-*      me->connection_id = i_connection_id.
-*      me->flight_date   = i_flight_date.
 
       planetype = flight_raw-plane_type_id.
       seats_max = flight_raw-seats_max.
       seats_occ = flight_raw-seats_occupied.
-*      seats_free = flight_raw-seats_max - flight_raw-seats_occupied.
       seats_free = flight_raw-seats_free.
 
-* convert currencies
-*      TRY.
-*          cl_exchange_rates=>convert_to_local_currency(
-*            EXPORTING
-*              date              = flight_raw-flight_date
-*              foreign_amount    = flight_raw-price
-*              foreign_currency  = flight_raw-currency_code
-*              local_currency    = currency
-*            IMPORTING
-*              local_amount      = me->price
-*          ).
-*        CATCH cx_exchange_rates.
-*          price = flight_raw-price.
-*      ENDTRY.
-
 * Set connection details
-*      SELECT SINGLE
-*        FROM /lrn/connection
-*      FIELDS airport_from_id, airport_to_id, departure_time, arrival_time
-*       WHERE carrier_id    = @carrier_id
-*         AND connection_id = @connection_id
-*        INTO @connection_details .
 
       connection_details = CORRESPONDING #( connections_buffer[
                                                  carrier_id    = i_carrier_id
                                                  connection_id = i_connection_id ]
                                            ).
-
-*      connection_details-duration = ( connection_details-arrival_time
-*                                    - connection_details-departure_time )
-*                                    / 60.
-
-
 
     ENDIF.
   ENDMETHOD.
@@ -346,18 +298,6 @@ CLASS lcl_passenger_flight IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD get_description.
-
-*    DATA txt TYPE string.
-*
-*    txt = 'Flight &carrid& &connid& on &date& from &from& to &to&'(005).
-*    txt = replace( val = txt sub = '&carrid&' with = carrier_id ).
-*    txt = replace( val = txt sub = '&connid&' with = connection_id ).
-*    txt = replace( val = txt sub = '&date&'   with = |{ flight_date DATE = USER }| ).
-*    txt = replace( val = txt sub = '&from&' with = connection_details-airport_from_id ).
-*    txt = replace( val = txt sub = '&to&'   with = connection_details-airport_to_id ).
-*    APPEND txt TO r_result.
-*
-*    APPEND |{ 'Planetype:'(006)      } { planetype  } | TO r_result.
 
     r_result = super->get_description(  ).
 
@@ -376,20 +316,8 @@ CLASS lcl_cargo_flight DEFINITION INHERITING FROM lcl_flight.
 
   PUBLIC SECTION.
 
-*    TYPES: BEGIN OF st_connection_details,
-*             airport_from_id TYPE /dmo/airport_from_id,
-*             airport_to_id   TYPE /dmo/airport_to_id,
-*             departure_time  TYPE /dmo/flight_departure_time,
-*             arrival_time    TYPE /dmo/flight_departure_time,
-*             duration        TYPE i,
-*           END OF st_connection_details.
-
     TYPES
        tt_flights TYPE STANDARD TABLE OF REF TO lcl_cargo_flight WITH DEFAULT KEY.
-
-*    DATA carrier_id    TYPE /dmo/carrier_id       READ-ONLY.
-*    DATA connection_id TYPE /dmo/connection_id    READ-ONLY.
-*    DATA flight_date   TYPE /dmo/flight_date      READ-ONLY.
 
     METHODS constructor
       IMPORTING
@@ -397,18 +325,10 @@ CLASS lcl_cargo_flight DEFINITION INHERITING FROM lcl_flight.
         i_connection_id TYPE /dmo/connection_id
         i_flight_date   TYPE /dmo/flight_date.
 
-*    METHODS get_connection_details
-*      RETURNING
-*        VALUE(r_result) TYPE st_connection_details.
-
     METHODS
       get_free_capacity
         RETURNING
           VALUE(r_result) TYPE /lrn/plane_actual_load.
-
-*    METHODS get_description
-*      RETURNING
-*        VALUE(r_result) TYPE string_table.
 
     CLASS-METHODS
       get_flights_by_carrier
@@ -439,9 +359,6 @@ CLASS lcl_cargo_flight DEFINITION INHERITING FROM lcl_flight.
 
     TYPES tt_flights_buffer TYPE HASHED TABLE OF st_flights_buffer
                             WITH UNIQUE KEY carrier_id connection_id flight_date.
-
-*    DATA connection_details TYPE st_connection_details.
-*    DATA planetype TYPE /dmo/plane_type_id.
 
     DATA maximum_load TYPE /lrn/plane_maximum_load.
     DATA actual_load TYPE /lrn/plane_actual_load.
@@ -498,10 +415,6 @@ CLASS lcl_cargo_flight IMPLEMENTATION.
           INTO CORRESPONDING FIELDS OF @flight_raw.
     ENDTRY.
 
-*    carrier_id    =  i_carrier_id .
-*    connection_id =  i_connection_id .
-*    flight_date   = i_flight_date.
-
     planetype = flight_raw-plane_type_id.
     maximum_load = flight_raw-maximum_load.
     actual_load = flight_raw-actual_load.
@@ -514,21 +427,12 @@ CLASS lcl_cargo_flight IMPLEMENTATION.
                                   / 60.
 
   ENDMETHOD.
-*
-*  METHOD get_connection_details.
-*    r_result = me->connection_details.
-*  ENDMETHOD.
 
   METHOD get_free_capacity.
     r_result = maximum_load - actual_load.
   ENDMETHOD.
 
   METHOD get_description.
-
-*    APPEND |Flight { carrier_id } { connection_id } on { flight_date DATE = USER } | &&
-*           |from { connection_details-airport_from_id } to { connection_details-airport_to_id } |
-*           TO r_result.
-*    APPEND |Planetype:     { planetype } |                         TO r_result.
 
     r_result = super->get_description( ).
 
@@ -623,9 +527,8 @@ CLASS lcl_carrier IMPLEMENTATION.
 
     IF sy-subrc <> 0.
       RAISE EXCEPTION TYPE cx_abap_invalid_value
-      EXPORTING
-        value = CONV #( i_carrier_id ).                 "Conversion de tipo: i_carrier_id (-> string -> char03)
-
+        EXPORTING
+          value = CONV #( i_carrier_id ).
     ENDIF.
 
     AUTHORITY-CHECK
@@ -636,10 +539,7 @@ CLASS lcl_carrier IMPLEMENTATION.
     IF sy-subrc <> 0.
       RAISE EXCEPTION TYPE cx_abap_auth_check_exception
         EXPORTING
-            textid = cx_abap_auth_check_exception=>missing_authorization.           "TO BIEN SARAH?
-
-            "REPASAR ESTOS 4 EJERCICIOS - PARA MAÑANA SABER
-
+          textid = cx_abap_auth_check_exception=>missing_authorization.
     ENDIF.
 
     TRY.
@@ -662,25 +562,6 @@ CLASS lcl_carrier IMPLEMENTATION.
   METHOD constructor.
 
     me->carrier_id = i_carrier_id.
-
-*    SELECT SINGLE
-*      FROM /lrn/carrier
-*    FIELDS concat_with_space( carrier_id, name, 1 ), currency_code
-*     WHERE carrier_id = @i_carrier_id
-*     INTO ( @me->name, @me->currency_code ).
-**
-*    IF sy-subrc <> 0.
-*      RAISE EXCEPTION TYPE cx_abap_invalid_value.
-*    ENDIF.
-*
-*    AUTHORITY-CHECK
-*           OBJECT '/LRN/CARR'
-*               ID '/LRN/CARR' FIELD i_carrier_id
-*               ID 'ACTVT'     FIELD '03'.
-*
-*    IF sy-subrc <> 0.
-*      RAISE EXCEPTION TYPE cx_abap_auth_check_exception.
-*    ENDIF.
 
     DATA(passenger_flights) =
         lcl_passenger_flight=>get_flights_by_carrier(
@@ -783,13 +664,6 @@ CLASS lcl_carrier IMPLEMENTATION.
 
 * Table Reductions
 **********************************************************************
-*    r_result = REDUCE #(
-*                 INIT i = 0
-*                  FOR <flight> IN passenger_flights
-*                 NEXT i += <flight>->get_free_seats( )
-*                       )
-*             / lines( passenger_flights ) .
-
     r_result =
       REDUCE #(
         INIT i = 0
