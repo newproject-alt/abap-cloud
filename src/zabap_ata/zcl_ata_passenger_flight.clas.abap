@@ -1,0 +1,15 @@
+CLASS zcl_ata_passenger_flight DEFINITION
+  PUBLIC
+  INHERITING FROM zcl_ata_flight
+  FINAL
+  CREATE PUBLIC .
+
+  PUBLIC SECTION.
+  PROTECTED SECTION.
+  PRIVATE SECTION.
+ENDCLASS.
+
+
+
+CLASS zcl_ata_passenger_flight IMPLEMENTATION.
+ENDCLASS.

@@ -3,18 +3,18 @@
  <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
   <asx:values>
    <DD04V>
-    <ROLLNAME>ZDE_NOMBRE_ATA</ROLLNAME>
+    <ROLLNAME>ZDE_SALARY_ATA</ROLLNAME>
     <DDLANGUAGE>E</DDLANGUAGE>
-    <DOMNAME>ZDO_NOMBRE_ATA</DOMNAME>
+    <DOMNAME>ZDO_SALARY_ATA</DOMNAME>
     <HEADLEN>55</HEADLEN>
     <SCRLEN1>10</SCRLEN1>
     <SCRLEN2>20</SCRLEN2>
     <SCRLEN3>40</SCRLEN3>
-    <DDTEXT>data element</DDTEXT>
-    <REPTEXT>Nombre-Apellido</REPTEXT>
-    <SCRTEXT_S>Nombre-AP</SCRTEXT_S>
-    <SCRTEXT_M>Nombre y apellido</SCRTEXT_M>
-    <SCRTEXT_L>Nombre y apellido de persona</SCRTEXT_L>
+    <DDTEXT>examen poo abap sueldo (campo importe)</DDTEXT>
+    <REPTEXT>Sueldos</REPTEXT>
+    <SCRTEXT_S>Sueldo</SCRTEXT_S>
+    <SCRTEXT_M>Sueldo de empleado</SCRTEXT_M>
+    <SCRTEXT_L>Sueldo de empleado (campo de importe)</SCRTEXT_L>
     <DTELMASTER>E</DTELMASTER>
     <REFKIND>D</REFKIND>
     <ABAP_LANGUAGE_VERSION>5</ABAP_LANGUAGE_VERSION>

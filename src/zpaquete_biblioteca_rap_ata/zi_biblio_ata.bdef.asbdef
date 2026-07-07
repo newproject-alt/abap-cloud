@@ -1,0 +1,27 @@
+managed implementation in class zbp_i_biblio_ata unique;
+strict ( 2 );
+
+define behavior for zi_biblio_ata //alias <alias_name>
+persistent table zbd_biblio_ata
+lock master
+authorization master ( instance )
+//etag master <field_name>
+{
+  create ( authorization : global );
+  update;
+  delete;
+  field ( readonly ) BibliotecaID;
+  association _Libros { create; }
+}
+
+define behavior for zi_libro_ata //alias <alias_name>
+persistent table zbd_libro_ata
+lock dependent by _Biblioteca
+authorization dependent by _Biblioteca
+//etag master <field_name>
+{
+  update;
+  delete;
+  field ( readonly ) BibliotecaID;
+  association _Biblioteca;
+}

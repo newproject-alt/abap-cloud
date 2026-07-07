@@ -1,0 +1,11 @@
+@EndUserText: {
+  label: 'Service Definition for ZC_RECETAS_ATA'
+}
+@ObjectModel: {
+  leadingEntity: {
+    name: 'ZC_RECETAS_ATA'
+  }
+}
+define service ZUI_RECETAS_ATA_O4 provider contracts odata_v4_ui {
+  expose ZC_RECETAS_ATA;
+}

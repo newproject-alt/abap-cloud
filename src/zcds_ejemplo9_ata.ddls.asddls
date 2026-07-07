@@ -15,6 +15,8 @@ define view entity zcds_ejemplo9_Ata
             else 'Código de país distinto'
         end as Case1,    
         
+        
+        
         $session.client             as Cliente,             // Mandante
         $session.system_date        as ClientField,         // Fecha actual del servidor SAP
         $session.system_language    as systemIdioma,        // Idioma del sistema
