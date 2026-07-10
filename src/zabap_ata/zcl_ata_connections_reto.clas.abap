@@ -1,4 +1,4 @@
-CLASS zcl_ata_connections DEFINITION
+CLASS zcl_ata_connections_reto DEFINITION
   PUBLIC
   FINAL
   CREATE PUBLIC .
@@ -14,9 +14,11 @@ ENDCLASS.
 
 
 
-CLASS zcl_ata_connections IMPLEMENTATION.
+CLASS zcl_ata_connections_reto IMPLEMENTATION.
 
   METHOD get_connections.
+
+*  CASO_03_B_leerr&crearLISTA.docx
 
     select  carrier_id,
             airport_from_id,
